@@ -1,0 +1,4 @@
+io\cvaldezchavez\config\ApplicationContextConfig.class
+io\cvaldezchavez\config\SpringWebAppInitializer.class
+io\cvaldezchavez\controller\RegisterController.class
+io\cvaldezchavez\config\WebMvcConfig.class
