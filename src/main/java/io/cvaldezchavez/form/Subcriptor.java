@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
@@ -22,15 +24,24 @@ import io.cvaldezchavez.validator.Year;
 
 
 @Entity
-@Table(name = "subcriber")
-public class Subcritor implements Serializable {
+@Table(name = "subcriptor")
+public class Subcriptor implements Serializable {
 
 	private static final long serialVersionUID = -4848780240095885296L;
 
-	@Column(name = "id")
 	@Id
-	private Integer id;
+	@Column(name = "id")
+	@GeneratedValue
+	private Long id;
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Column(name = "name")
 	@Size(min = 2, max = 30)
 	private String name;
@@ -55,12 +66,12 @@ public class Subcritor implements Serializable {
 	@NotNull
 	private Gender gender;
 	
-	@Column(name = "birtday")
+	@Column(name = "birthday")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull
 	@Past
 	@Year(1989)
-	private Date birtday;
+	private Date birthday;
 
 	public String getName() {
 		return name;
@@ -102,18 +113,43 @@ public class Subcritor implements Serializable {
 		this.gender = gender;
 	}
 
-	public Date getBirtday() {
-		return birtday;
+	public Date getBirthday() {
+		return birthday;
 	}
 
-	public void setBirtday(Date birtday) {
-		this.birtday = birtday;
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 
 	@Override
 	public String toString() {
-		return "Subcritor [name=" + name + ", email=" + email + ", age=" + age + ", phone=" + phone + ", gender="
-		        + gender + ", birtday=" + birtday + "]";
+		return "Subcriptor [name=" + name + ", email=" + email + ", age=" + age + ", phone=" + phone + ", gender="
+		        + gender + ", birthday=" + birthday + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Subcriptor other = (Subcriptor) obj;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		return true;
 	}
 	
 	
